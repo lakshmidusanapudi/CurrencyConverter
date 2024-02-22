@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>History Page</title>
+    <style>
+        /* Add your styles here if needed */
+    </style>
+</head>
+<body>
+
+    <div class="header">
+        <h1>Conversion History</h1>
+    </div>
+
+    <div class="history-container">
+        <!-- History entries will be displayed here -->
+    </div>
+
+    <script>
+        // Your JavaScript code goes here
+
+        // Function to display conversion history
+        function displayHistory() {
+            var historyContainer = document.querySelector(".history-container");
+            var conversionHistory = JSON.parse(localStorage.getItem('conversionHistory'));
+
+            if (conversionHistory) {
+                // Clear existing content in the history container
+                historyContainer.innerHTML = "";
+
+                // Display each entry in the conversion history
+                conversionHistory.forEach(entry => {
+                    var historyEntryElement = document.createElement("div");
+                    historyEntryElement.textContent = "Amount: " + entry.amount +
+                        ", From Currency: " + entry.fromCurrency +
+                        ", To Currency: " + entry.toCurrency +
+                        ", Converted Amount: " + entry.convertedAmount;
+                    historyContainer.appendChild(historyEntryElement);
+                });
+            } else {
+                // Display a message when there is no conversion history available
+                historyContainer.innerHTML = "No conversion history available.";
+            }
+        }
+
+        // Call the displayHistory function when the history page is loaded
+        displayHistory();
+    </script>
+
+</body>
+</html>
